@@ -35,6 +35,6 @@ def add_index(data_array):
     index_col_position = len(data_array[0])
     
     array_with_indices = np.c_[data_array, index]
-    array_with_indices[0,index_col_position] = "index"
+    array_with_indices[0,index_col_position] = "index" #change column name to index
     
     return array_with_indices
