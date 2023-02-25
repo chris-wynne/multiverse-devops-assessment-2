@@ -1,3 +1,4 @@
+import numpy as np
 from scripts.import_data import get_input
 from pathlib import Path
 
@@ -11,7 +12,7 @@ def test_file_exists():
     assert file_exists == True
 
 def test_input_is_list():
-    expected_output = list
+    expected_output = np.ndarray
     assert type(output) == expected_output
     
 def test_input_column_len():

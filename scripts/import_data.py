@@ -1,4 +1,5 @@
 import csv
+import numpy as np
 
 def get_input(fpath):
     """
@@ -6,10 +7,17 @@ def get_input(fpath):
         Imports csv file and returns array
     Args:
         fpath: full path of desired import file
+        data_file: list of rows from import file
     Returns:
-        data_file: imported file
+        data_array: imported file as a numpy array
     """
     with open(fpath, newline='') as csvfile:
-        data_file = list(csv.reader(csvfile)) 
+        data_file = list(csv.reader(csvfile))
     
-    return data_file
+    #convert to numpy array
+    data_array = np.array(data_file)
+     
+    return data_array
+
+def remove_duplicate_ids(data_file):
+    pass
