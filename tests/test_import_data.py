@@ -1,3 +1,4 @@
+import pytest
 import numpy as np
 from scripts.import_data import get_input
 from pathlib import Path
@@ -16,7 +17,7 @@ def test_input_is_list():
     assert type(output) == expected_output
     
 def test_input_column_len():
-    assert len(output[0]) == expected_col_len
+    assert len(output[0]) == expected_col_len + 1 #additional column added for added index col
 
 def test_input_column_names():
     column_names = output[0]
@@ -24,3 +25,6 @@ def test_input_column_names():
     
     for col in col_range:
         assert column_names[col] == expected_names[col]
+
+def test_array_contains_index_col():
+    pass
