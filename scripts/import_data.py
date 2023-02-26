@@ -4,16 +4,21 @@ import numpy as np
 def get_input(fpath):
     """
     Summary:
-        Imports csv file and returns array
+        Imports csv file, ignored blank rows and returns array
     Args:
         fpath: full path of desired import file
-        data_file: list of rows from import file
     Returns:
         data_array: imported file as a numpy array
     """
+    data_file = []
+    #import csv data ignoring blank rows
     with open(fpath, newline='') as csvfile:
-        data_file = list(csv.reader(csvfile))
-    
+        csv_data = list(csv.reader(csvfile))
+        #append valid rows to data_file and skip blank rows
+        for row in csv_data:
+            if any(x.strip() for x in row):
+                data_file.append(row)
+            
     #convert to numpy array
     data_array = np.array(data_file)
     
