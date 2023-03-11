@@ -19,11 +19,11 @@ def identify_duplicate_values(data_array, dup_col_name):
         if data_array[row, dup_col] in id_list:
             index_to_remove_list.append(data_array[row, index_col])
         else:
-            id_list.append(data_array[row, dup_col])
+            id_list.append(data_array[row, dup_col]) #only append first indexes and no other duplicates
             
     return index_to_remove_list
 
-def remove_duplicates(data_array, index_to_remove_list):
+def remove_rows(data_array, index_to_remove_list):
     """
     Summary:
         Removes rows by index number based on given index list
@@ -31,16 +31,17 @@ def remove_duplicates(data_array, index_to_remove_list):
         data_array: array to be cleaned
         index_to_remove_list: list of indexes to identify rows to remove
     Returns:
-        clean_array: data array without duplicate rows
+        clean_array: data array without specified rows
     """
     index_col = find_column_position(data_array, "index") #finds position of index column
     data_rows = range(1, len(data_array)) #get number of rows to iterate through
     column_names = data_array[0]
     clean_list = [column_names]
+    
     for row in data_rows:
         clean_array = []
         if data_array[row, index_col] not in index_to_remove_list:
-            clean_list.append(data_array[row]) #only append first indexes and no other duplicates
+            clean_list.append(data_array[row])
     clean_array = np.array(clean_list)
     
     return clean_array
@@ -84,3 +85,17 @@ def capitalise_column_values(data_array, col_to_capitalise):
     capitalised_data_array = np.concatenate((capitalised_array_headers, capitalised_array), axis=0)
     
     return capitalised_data_array
+
+def identify_invalid_score(data_array, column_name):
+    
+    index_col = find_column_position(data_array, "index") #finds position of index column
+    a3_col = find_column_position(data_array, column_name) #finds position of column_name
+    data_rows = range(1, len(data_array)) #get number of rows to iterate through
+    
+    index_to_remove_list = []
+    valid_range = range(1,10)
+    for row in data_rows:
+        if int(data_array[row, a3_col]) not in valid_range:
+            index_to_remove_list.append(data_array[row, index_col])
+    
+    return index_to_remove_list
