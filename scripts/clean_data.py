@@ -50,7 +50,7 @@ def find_column_position(data_array, column_name):
     Summary:
         Find the position of a specific column name
     Args:
-        data_array : array to containing column names
+        data_array : array containing column names
         column_name : column value to find position
 
     Returns:
@@ -59,3 +59,28 @@ def find_column_position(data_array, column_name):
     column_names = data_array[0].tolist()
     col_position = column_names.index(column_name)
     return col_position
+
+def capitalise_column_values(data_array, col_to_capitalise):
+    """   
+    Summary:
+        Capitalises the values of specified column, excluding the headers.
+    Args:
+        data_array : array containing columns to be capitalised
+        col_to_capitalise : column where values should be capitalised
+
+    Returns:
+        capitalised_data_array : returns data_array but with capitalised values in specified column
+    """
+    index_col = find_column_position(data_array, "index") #finds position of index column
+    col_to_capitalise_pos = find_column_position(data_array, col_to_capitalise) #finds position of column to capitalise
+    column_names = data_array[0]
+
+    data_array_without_headers = np.delete(data_array, (0), axis=0)
+    data_array_transposed = np.transpose(data_array_without_headers)
+    data_array_transposed[col_to_capitalise_pos] = np.char.capitalize(data_array_transposed[col_to_capitalise_pos]) #capitalise specific row
+    
+    capitalised_array_headers = [column_names]
+    capitalised_array = np.transpose(data_array_transposed)
+    capitalised_data_array = np.concatenate((capitalised_array_headers, capitalised_array), axis=0)
+    
+    return capitalised_data_array

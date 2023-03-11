@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from scripts.clean_data import identify_duplicate_values, remove_duplicates, find_column_position
+from scripts.clean_data import identify_duplicate_values, remove_duplicates, find_column_position, capitalise_column_values
 
 test_array = np.array([["index", "test_id", "test_name"], [1, 1, "john"], [2, 1, "john"], [3, 2, "paul"], [4, 2, "paul"], [5, 3, "george"], [6, 4, "ringo"]])
 
@@ -20,4 +20,11 @@ def test_remove_duplicates():
 
 def test_find_column_position():
     col_position = find_column_position(test_array, "index")
-    assert col_position == 0    
+    assert col_position == 0
+
+def test_capitalise_column_values():
+    capitalised_test_array = capitalise_column_values(test_array, "test_name")
+    assert capitalised_test_array[1,2] == "John"
+    assert capitalised_test_array[3,2] == "Paul"
+    assert capitalised_test_array[5,2] == "George"
+    assert capitalised_test_array[6,2] == "Ringo"
