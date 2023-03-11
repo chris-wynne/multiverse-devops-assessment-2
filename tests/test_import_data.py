@@ -55,11 +55,12 @@ def test_input_column_names():
     for col in col_range:
         assert column_names[col] == expected_names[col]
 
-def test_array_contains_index_col():
-    assert "index" in column_names
+def test_array_contains_index_col(get_csv_data):
+    data_without_blanks = get_input(get_csv_data)
+    assert "index" in data_without_blanks[0]
 
 def test_remove_blank_rows(get_csv_data):
-    data_with_blanks = genfromtxt(get_csv_data, delimiter=',')
+    data_with_blanks = genfromtxt(get_csv_data, delimiter=',', dtype='<U13')
     data_without_blanks = get_input(get_csv_data)
     
     #checks all 13 rows exist in temporary test csv
