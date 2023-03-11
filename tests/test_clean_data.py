@@ -6,12 +6,12 @@ test_array = np.array([["index", "test_id"], [1, 1], [2, 1], [3, 2], [4, 2], [5,
 test_dup_indexes = [2,4]
 
 def test_identify_duplicate_values():
-    duplicate_indexes = identify_duplicate_values(test_array, 1, 0)
+    duplicate_indexes = identify_duplicate_values(test_array, "test_id")
     assert len(duplicate_indexes) == 2
 
 def test_remove_duplicates():
-    duplicate_indexes = identify_duplicate_values(test_array, 1, 0)
-    clean_test_array = remove_duplicates(test_array, 0, duplicate_indexes)
+    duplicate_indexes = identify_duplicate_values(test_array, "test_id")
+    clean_test_array = remove_duplicates(test_array, duplicate_indexes)
     assert len(clean_test_array) == 5
 
 def test_find_column_position():

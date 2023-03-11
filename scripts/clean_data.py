@@ -1,16 +1,17 @@
 import numpy as np
 
-def identify_duplicate_values(data_array, dup_col, index_col):
+def identify_duplicate_values(data_array, dup_col_name):
     """
     Summary:
         Identifies duplicate column values by index 
     Args:
         data_array: array to be cleaned
-        dup_col: position of the column to check for duplicates
-        index_col : position of index column required for recording duplicates to remove
+        dup_col_name: name of the column to check for duplicates
     Returns:
         index_to_remove_list: list of indexes to identify rows to remove
     """
+    dup_col = find_column_position(data_array, dup_col_name) #finds position of column
+    index_col = find_column_position(data_array, "index") #finds position of index column
     data_rows = range(1, len(data_array)) #get number of rows to iterate through
     index_to_remove_list = []
     id_list = []
@@ -22,17 +23,17 @@ def identify_duplicate_values(data_array, dup_col, index_col):
             
     return index_to_remove_list
 
-def remove_duplicates(data_array, index_col, index_to_remove_list):
+def remove_duplicates(data_array, index_to_remove_list):
     """
     Summary:
         Removes rows by index number based on given index list
     Args:
         data_array: array to be cleaned
-        index_col: position of index column required for removing duplicates rows
         index_to_remove_list: list of indexes to identify rows to remove
     Returns:
         clean_array: data array without duplicate rows
     """
+    index_col = find_column_position(data_array, "index") #finds position of index column
     data_rows = range(1, len(data_array)) #get number of rows to iterate through
     column_names = data_array[0]
     clean_list = [column_names]
