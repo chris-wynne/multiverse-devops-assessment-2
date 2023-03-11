@@ -27,7 +27,7 @@ def remove_duplicates(data_array, index_col, index_to_remove_list):
     Summary:
         Removes rows by index number based on given index list
     Args:
-        data_array: 
+        data_array: array to be cleaned
         index_col: position of index column required for removing duplicates rows
         index_to_remove_list: list of indexes to identify rows to remove
     Returns:
@@ -43,3 +43,18 @@ def remove_duplicates(data_array, index_col, index_to_remove_list):
     clean_array = np.array(clean_list)
     
     return clean_array
+
+def find_column_position(data_array, column_name):
+    """   
+    Summary:
+        Find the position of a specific column name
+    Args:
+        data_array : array to containing column names
+        column_name : column value to find position
+
+    Returns:
+        col_position: int value and position of column_name
+    """#
+    column_names = data_array[0].tolist()
+    col_position = column_names.index(column_name)
+    return col_position
