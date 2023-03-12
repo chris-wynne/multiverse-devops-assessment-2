@@ -108,3 +108,16 @@ def identify_invalid_score(data_array, column_name):
             index_to_remove_list.append(data_array[row, index_col])
     
     return index_to_remove_list
+
+def drop_index(data_array):
+    """
+    Summary:
+        Locates and removes index column within data array
+    Args:
+        data_array : array with index column for removal
+    Returns:
+        clean_array : data array without index column
+    """
+    index_col = int(find_column_position(data_array, "index")) #finds position of index column
+    clean_array = np.delete(data_array, index_col, axis=1)
+    return clean_array

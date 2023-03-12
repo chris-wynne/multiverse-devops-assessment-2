@@ -1,5 +1,8 @@
 import pytest
 import csv
+import os
+import shutil
+from scripts.import_data import save_output
 
 #test array data for writing to a temporary csv.
 test_data = [
@@ -9,13 +12,12 @@ test_data = [
         ["2", "paul", "6"],
         ["", "", ""],
         ["2", "paul", "6"],
-        ["", "b5", "c5"],
         ["", "", ""],
         ["3", "george", "0"],
         ["4", "ringo", "11"],
     ]
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="module")
 def get_test_csv_data(tmp_path_factory):
     """
     Summary: 
@@ -30,4 +32,12 @@ def get_test_csv_data(tmp_path_factory):
         csv_writer = csv.writer(csvfile)
         for row in test_data:
             csv_writer.writerow(row)
-    return test_file
+    yield test_file
+    os.remove(test_file) #remove temp file after it has been tested
+
+@pytest.fixture(scope="module")
+def gen_save_output_file(tmp_path_factory):
+    output_test_file = tmp_path_factory.mktemp("data").joinpath("output_test.csv")
+    save_output(test_data, output_test_file)
+    yield  output_test_file
+    os.remove(output_test_file) #remove temp file after it has been tested

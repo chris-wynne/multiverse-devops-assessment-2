@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from scripts.clean_data import identify_duplicate_values, remove_rows, find_column_position, capitalise_column_values, identify_invalid_score
+from scripts.clean_data import identify_duplicate_values, remove_rows, find_column_position, capitalise_column_values, identify_invalid_score, drop_index
 
 test_array = np.array([["index", "test_id", "test_name", "test_score"], [1, 1, "john", 5], [2, 1, "john", 5], [3, 2, "paul", 6], [4, 2, "paul", 0], [5, 3, "george", 7], [6, 4, "ringo", 11]])
 
@@ -37,3 +37,8 @@ def test_capitalise_column_values():
 def test_identify_invalid_score():
     index_to_remove = identify_invalid_score(test_array, "test_score")
     assert index_to_remove == ['4','6']
+
+def test_drop_index():
+    clean_array = drop_index(test_array)
+    assert len(clean_array[0]) == 3
+    assert "index" not in clean_array[0]
