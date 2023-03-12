@@ -87,7 +87,16 @@ def capitalise_column_values(data_array, col_to_capitalise):
     return capitalised_data_array
 
 def identify_invalid_score(data_array, column_name):
-    
+    """
+    Summary:
+        Identifies rows where score is not 1 - 10 based on index column.
+    Args:
+        data_array : array containing columns to be validated
+        column_name : column where values should be validated
+
+    Returns:
+        index_to_remove_list: list of indexes to identify rows to remove
+    """
     index_col = find_column_position(data_array, "index") #finds position of index column
     a3_col = find_column_position(data_array, column_name) #finds position of column_name
     data_rows = range(1, len(data_array)) #get number of rows to iterate through
