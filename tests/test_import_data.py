@@ -3,14 +3,19 @@ import csv
 import numpy as np
 from numpy import genfromtxt
 from pathlib import Path
-from scripts.import_data import get_input, add_index
-from tests.conftest import get_test_csv_data
+from scripts.import_data import get_input, save_output
 
 filename = r"data/results.csv"
 output = get_input(filename)
 column_names = output[0]
 expected_col_len = 6
 expected_names = ["user_id","first_name","last_name","answer_1","answer_2","answer_3"]
+
+expected_data = [
+        ["test_id", "test_name", "test_score"],
+        ["1", "john", "5"],
+        ["2", "paul", "6"],
+    ]
 
 def test_file_exists():
     file_exists = Path(filename).is_file()
@@ -29,10 +34,12 @@ def test_input_column_names():
     for col in col_range:
         assert column_names[col] == expected_names[col]
 
+@pytest.fixture(scope="session")
 def test_array_contains_index_col(get_test_csv_data):
     data_without_blanks = get_input(get_test_csv_data)
     assert "index" in data_without_blanks[0]
 
+@pytest.fixture(scope="session")
 def test_remove_blank_rows(get_test_csv_data):
     data_with_blanks = genfromtxt(get_test_csv_data, delimiter=',', dtype='<U13')
     data_without_blanks = get_input(get_test_csv_data)
@@ -41,3 +48,11 @@ def test_remove_blank_rows(get_test_csv_data):
     assert len(data_with_blanks) == 9
     #checks 2 blank rows have been removed from imported temporary data set
     assert len(data_without_blanks) == 7
+
+@pytest.fixture(scope="session")
+def test_save_output(tmp_path_factory):
+    output_test_file = tmp_path_factory.mktemp("data").joinpath("output_test.csv")
+    save_output(expected_data, output_test_file)
+    output_file_exists = Path(output_test_file).is_file()
+    
+    assert output_file_exists == True

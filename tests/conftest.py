@@ -14,13 +14,6 @@ test_data = [
         ["4", "ringo", "11"],
     ]
 
-#expected data
-expected_data = [
-        ["test_id", "test_name", "test_score"],
-        ["1", "john", "5"],
-        ["2", "paul", "6"],
-    ]
-
 @pytest.fixture(scope="session")
 def get_test_csv_data(tmp_path_factory):
     """
