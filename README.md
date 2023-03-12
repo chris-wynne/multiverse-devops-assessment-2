@@ -27,3 +27,21 @@ pytest --cov
 
 Below are instructions for setting up and using Docker.
 ### Docker Terraform Tool
+
+1. Build docker file
+
+```(bash)
+docker build --rm -t tf-tool -f tf-tool.Dockerfile .
+```
+
+2. Run container in terminal
+
+```(bash)
+docker run --rm -it --mount type=bind,target=//root/code,source=/"$(pwd)" tf-tool
+```
+
+3. Exit container
+
+```(bash)
+exit
+```

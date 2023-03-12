@@ -2,7 +2,7 @@ FROM amazon/aws-cli:latest
 
 #add SSL certs (remove this if not an ARUP user)
 #---------------------------------------------------------
-COPY ./build/*.crt /etc/pki/ca-trust/source/anchors/
+COPY ./crt_files/*.crt /etc/pki/ca-trust/source/anchors/
 RUN update-ca-trust 
 #---------------------------------------------------------
 
