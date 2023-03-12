@@ -43,3 +43,15 @@ def add_index(data_array):
     array_with_indices[0,index_col_position] = "index" #change column name to index
     
     return array_with_indices
+
+def save_output(clean_array, output_path):
+    """
+    Summary:
+        Saves data array to a csv file
+    Args:
+        clean_array : Cleaned data array ready to be saved
+        output_path : filepath for saving output
+    """
+    with open(output_path, "w", newline="") as csvfile:
+        csv_writer = csv.writer(csvfile)
+        csv_writer.writerows(clean_array)
