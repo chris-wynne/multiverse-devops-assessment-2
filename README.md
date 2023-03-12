@@ -1,4 +1,8 @@
+Author: Chris Wynne \
+Date: 12.03.2023
+
 # multiverse-devops-assessment-2
+
 Repository containing technical requirements for DevOps assessment 2. Below are instructions for running the application & tests.  
 
 ## Running python-survey-app
@@ -53,13 +57,29 @@ These commands should be entered into the tf-tool Docker container terminal.
 1. Navigate to the terraform folder
 
 ```(bash)
-cd code/terraform
+cd code/terraform-iac
 ```
+
+2. Initialize terraform
 
 ```(bash)
 terraform init
 ```
 
+3. Plan terraform to spot issues before creating
+
 ```(bash)
 terraform plan
+```
+
+4. Build
+
+```(bash)
+terraform apply
+```
+
+5. Destroy
+
+```(bash)
+terraform destroy
 ```
