@@ -13,12 +13,6 @@ column_names = output[0]
 expected_col_len = 6
 expected_names = ["user_id","first_name","last_name","answer_1","answer_2","answer_3"]
 
-expected_data = [
-        ["test_id", "test_name", "test_score"],
-        ["1", "john", "5"],
-        ["2", "paul", "6"],
-    ]
-
 def test_file_exists():
     file_exists = Path(filename).is_file()
     assert file_exists == True

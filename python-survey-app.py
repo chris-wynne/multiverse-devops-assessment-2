@@ -1,6 +1,7 @@
 import numpy as np
 from scripts.import_data import get_input, save_output
 from scripts.clean_data import identify_duplicate_values, remove_rows, capitalise_column_values, identify_invalid_score, drop_index
+from scripts.read_output import read_output, print_output
 
 fpath = r"data/results.csv"
 opath = r"data/output.csv"
@@ -24,3 +25,9 @@ clean_array = drop_index(clean_array)
 
 #save output
 save_output(clean_array, opath)
+
+#read output
+output_array = read_output(opath)
+
+#print array
+print_output(output_array)
