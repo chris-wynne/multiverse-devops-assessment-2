@@ -9,10 +9,16 @@ test_data = [
         ["2", "paul", "6"],
         ["", "", ""],
         ["2", "paul", "6"],
-        ["", "b5", "c5"],
         ["", "", ""],
         ["3", "george", "0"],
         ["4", "ringo", "11"],
+    ]
+
+#expected data
+expected_data = [
+        ["test_id", "test_name", "test_score"],
+        ["1", "john", "5"],
+        ["2", "paul", "6"],
     ]
 
 @pytest.fixture(scope="session")

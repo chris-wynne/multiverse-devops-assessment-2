@@ -38,6 +38,6 @@ def test_remove_blank_rows(get_test_csv_data):
     data_without_blanks = get_input(get_test_csv_data)
     
     #checks all 13 rows exist in temporary test csv
-    assert len(data_with_blanks) == 10
+    assert len(data_with_blanks) == 9
     #checks 2 blank rows have been removed from imported temporary data set
-    assert len(data_without_blanks) == 8
+    assert len(data_without_blanks) == 7
