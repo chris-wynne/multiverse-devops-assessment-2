@@ -45,3 +45,21 @@ docker run --rm -it --mount type=bind,target=//root/code,source=/"$(pwd)" tf-too
 ```(bash)
 exit
 ```
+
+## Terraform Terminal Commands
+
+These commands should be entered into the tf-tool Docker container terminal.
+
+1. Navigate to the terraform folder
+
+```(bash)
+cd code/terraform
+```
+
+```(bash)
+terraform init
+```
+
+```(bash)
+terraform plan
+```
