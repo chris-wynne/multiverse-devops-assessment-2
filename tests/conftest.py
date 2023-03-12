@@ -37,6 +37,14 @@ def get_test_csv_data(tmp_path_factory):
 
 @pytest.fixture(scope="module")
 def gen_save_output_file(tmp_path_factory):
+    """
+    Summary: 
+        Create a temporary file in the test directory using the save_output function (test_data)
+    Args:
+        tmp_path_factory : A session-scoped fixture which can be used to create arbitrary temporary directories from any other fixture or test
+    Returns:
+        output_test_file: csv file containing values generated in test_data
+    """
     output_test_file = tmp_path_factory.mktemp("data").joinpath("output_test.csv")
     save_output(test_data, output_test_file)
     yield  output_test_file
